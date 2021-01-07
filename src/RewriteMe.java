@@ -76,9 +76,7 @@ public class RewriteMe {
     public String getLongestLettercountAnwerInAGivenCategory(Category c)
     {
         List<String> temp = new ArrayList<>();
-        List<String> finalTemp = temp;
-        questions.stream().filter(s -> s.getCategory().equals(c)).forEach(q -> finalTemp.addAll(q.getAllAnswers()));
-        temp = finalTemp.stream().distinct().collect(Collectors.toList());
+        questions.stream().filter(s -> s.getCategory().equals(c)).forEach(q -> temp.addAll(q.getAllAnswers()));
         return temp.stream().reduce("", (acc, e) -> {
             if(acc.length() < e.length())
                 return e;
