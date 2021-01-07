@@ -7,11 +7,15 @@
 
 import java.security.cert.CollectionCertStoreParameters;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.reducing;
 
 
 public class RewriteMe {
@@ -68,7 +72,11 @@ public class RewriteMe {
     //Skapa en Map där kategorierna är nycklar och värdena är en lista
     //av de frågesträngar som tillhör varje kategori
     public Map<Category, List<String>> getQuestionGroupedByCategory(){
-        throw new UnsupportedOperationException("Not supported yet.");
+        Map<Category, List<String>> map = new HashMap<>();
+        questions.stream().forEach(q -> map.put
+                (q.getCategory(), getAllQuestionStringsBelongingACategory(q.getCategory())));
+
+        return map;
     }
 
     //Skapa en funktion som hittar det svarsalternativ som har flest bokstäver, i en kategori, given som inparameter
